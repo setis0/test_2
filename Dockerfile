@@ -9,12 +9,12 @@ COPY package*.json ./
 
 # Install app dependencies
 RUN npm install
-
+RUN npm i -g typescript nodemon ts-node
 # Bundle app source
 COPY . .
-
+RUN npm run build:dist
 # Expose port
 EXPOSE 8080
 
 # Command to run the app
-CMD [ "node", "server.ts" ]
+CMD [ "node", "./dist/server.js" ]

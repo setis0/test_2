@@ -1,16 +1,25 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {Column, CreateDateColumn, Entity, PrimaryGeneratedColumn} from 'typeorm';
+
+export enum OrderStatus {
+    new = 'new ', packed = 'packed', processing = 'processing', delivered = 'delivered', return = 'return'
+}
 
 @Entity()
 export class Order {
-  @PrimaryGeneratedColumn()
-  id: string;
+    @PrimaryGeneratedColumn()
+    id: string;
 
-  @Column()
-  productName: string;
+    @Column()
+    productName: string;
 
-  @Column()
-  creationDate: Date;
+    @CreateDateColumn()
+    creationDate: Date;
 
-  @Column()
-  status: string;
+    @Column({
+                type: "enum",
+                enum: OrderStatus,
+                default: OrderStatus.new
+            })
+    status: OrderStatus;
+
 }

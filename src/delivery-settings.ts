@@ -1,9 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, ObjectId, ObjectIdColumn} from 'typeorm';
 
 @Entity()
 export class DeliverySettings {
-  @PrimaryGeneratedColumn()
-  id: string;
+  @ObjectIdColumn()
+  id: ObjectId
 
   @Column()
   settingName: string;
